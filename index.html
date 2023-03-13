@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GFC</title>
+  <style>
+    html {
+        font-family: Arial,sans-serif;
+    }
+
+    .box {
+        width: 70px;
+        height: 30px;
+        position: relative;
+        border-radius: 15px;
+        background-color: grey;
+        margin-bottom: 30px;
+    }
+
+    .moveButton {
+        position: absolute;
+        top: -3px;
+        width:36px;
+        height: 36px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 2px 3px darkgrey;
+
+    }
+    .move {
+        left: 35px;
+    }
+
+    .title {margin-left: 100px;
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="box" id="box_1">
+      <button class="moveButton" id="moveBtn_1"></button>
+      <p class="title">GOOD</p>
+  </div>
+    <div class="box" id="box_2">
+        <button class="moveButton" id="moveBtn_2"></button>
+        <p class="title">CHEAP</p>
+    </div>
+    <div class="box" id="box_3">
+        <button class="moveButton" id="moveBtn_3"></button>
+        <p class="title">FAST</p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    const moveBtn_1 = document.getElementById("moveBtn_1");
+    const moveBtn_2 = document.getElementById("moveBtn_2");
+    const moveBtn_3 = document.getElementById("moveBtn_3");
+    const box_1 = document.getElementById("box_1");
+    const box_2 = document.getElementById("box_2");
+    const box_3 = document.getElementById("box_3");
+    let isMoved_btn1 = false;
+    let isMoved_btn2 = false;
+    let isMoved_btn3 = false;
+
+
+    moveBtn_1.addEventListener("click", function () {
+        if (!isMoved_btn1) {
+            if ((!isMoved_btn2 && !isMoved_btn3) || (!isMoved_btn2 && isMoved_btn3) || (isMoved_btn2 && !isMoved_btn3)) {
+                    moveBtn_1.classList.add('move');
+                    isMoved_btn1 = true;
+                    box_1.style.backgroundColor = 'green';
+                    moveBtn_1.style.backgroundColor = 'limegreen';
+            } else {
+                moveBtn_1.classList.add('move');
+                isMoved_btn1 = true;
+                box_1.style.backgroundColor = 'green';
+                moveBtn_1.style.backgroundColor = 'limegreen';
+                moveBtn_3.classList.remove('move');
+                isMoved_btn3 = false;
+                box_3.style.backgroundColor = 'grey';
+                moveBtn_3.style.backgroundColor = 'darkgrey';
+            }
+        } else {
+            moveBtn_1.classList.remove('move');
+            isMoved_btn1 = false;
+            box_1.style.backgroundColor = 'grey';
+            moveBtn_1.style.backgroundColor = 'darkgrey';
+        }
+    })
+    moveBtn_2.addEventListener("click", function () {
+        if (!isMoved_btn2) {
+            if ((!isMoved_btn1 && !isMoved_btn3) || (!isMoved_btn1 && isMoved_btn3) || (isMoved_btn1 && !isMoved_btn3)) {
+                moveBtn_2.classList.add('move');
+                isMoved_btn2 = true;
+                box_2.style.backgroundColor = 'deepskyblue';
+                moveBtn_2.style.backgroundColor = 'dodgerblue';
+            } else {
+                moveBtn_2.classList.add('move');
+                isMoved_btn2 = true;
+                box_2.style.backgroundColor = 'deepskyblue';
+                moveBtn_2.style.backgroundColor = 'dodgerblue';
+                moveBtn_1.classList.remove('move');
+                isMoved_btn1 = false;
+                box_1.style.backgroundColor = 'grey';
+                moveBtn_1.style.backgroundColor = 'darkgrey';
+            }
+        } else {
+            moveBtn_2.classList.remove('move');
+            isMoved_btn2 = false;
+            box_2.style.backgroundColor = 'grey';
+            moveBtn_2.style.backgroundColor = 'darkgrey';
+        }
+    })
+    moveBtn_3.addEventListener("click", function () {
+        if (!isMoved_btn3) {
+            if ((!isMoved_btn1 && !isMoved_btn2) || (!isMoved_btn1 && isMoved_btn2) || (isMoved_btn1 && !isMoved_btn2)) {
+                moveBtn_3.classList.add('move');
+                isMoved_btn3 = true;
+                box_3.style.backgroundColor = 'red';
+                moveBtn_3.style.backgroundColor = 'crimson';
+            } else {
+                moveBtn_3.classList.add('move');
+                isMoved_btn3 = true;
+                box_3.style.backgroundColor = 'red';
+                moveBtn_3.style.backgroundColor = 'crimson';
+                moveBtn_2.classList.remove('move');
+                isMoved_btn2 = false;
+                box_2.style.backgroundColor = 'grey';
+                moveBtn_2.style.backgroundColor = 'darkgrey';
+            }
+        } else {
+            moveBtn_3.classList.remove('move');
+            isMoved_btn3 = false;
+            box_3.style.backgroundColor = 'grey';
+            moveBtn_3.style.backgroundColor = 'darkgrey';
+        }
+    })
+</script>
